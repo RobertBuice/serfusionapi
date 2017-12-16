@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from rest_framework import viewsets
 
 from models import Person, Address, EmailAddress, PhoneNumber
-from serializers import PersonSerializer, AddressSerializer, \
+from serializers import PersonSerializer, PersonGetSerializer, AddressSerializer, \
     EmailAddressSerializer, PhoneNumberSerializer
 
 
@@ -12,7 +12,11 @@ class PersonViewSet(viewsets.ModelViewSet):
     API endpoint that allows people to be viewed or edited.
     """
     queryset = Person.objects.all()
-    serializer_class = PersonSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return PersonGetSerializer
+        return PersonSerializer
 
 
 class AddressViewSet(viewsets.ModelViewSet):
@@ -37,4 +41,3 @@ class PhoneNumberViewSet(viewsets.ModelViewSet):
     """
     queryset = PhoneNumber.objects.all()
     serializer_class = PhoneNumberSerializer
-
