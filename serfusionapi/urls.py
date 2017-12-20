@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from rest_framework import routers
-from api import views
+from api import views as api_views
+from serfusion import views as app_views
 
 router = routers.DefaultRouter()
-router.register(r'people', views.PersonViewSet)
+router.register(r'people', api_views.PersonViewSet, 'people')
 
 urlpatterns = [
     url(r'api/v1.0/', include(router.urls)),
+    url('', app_views.home),
 ]

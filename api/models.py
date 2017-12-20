@@ -24,7 +24,7 @@ class Address(models.Model):
 class PhoneNumber(models.Model):
     person = models.ForeignKey(Person, related_name='phone_numbers')
 
-    phone_number = PhoneNumberField()
+    phone_number = models.CharField(max_length=20, default='')
 
 
 class EmailAddress(models.Model):
