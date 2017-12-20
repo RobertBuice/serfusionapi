@@ -26,7 +26,7 @@ class PersonViewSet(viewsets.ModelViewSet):
 
             phones = PhoneNumber.objects.filter(Q(phone_number__icontains=api_filter))
 
-            queryset = queryset.filter(
+            queryset = queryset.distinct().filter(
                 Q(first_name__icontains=api_filter) | Q(last_name__icontains=api_filter) |
                 Q(date_of_birth__icontains=api_filter) | Q(addresses__in=addresses) |
                 Q(email_addresses__in=emails) | Q(phone_numbers__in=phones)
