@@ -66,7 +66,6 @@ class PersonSerializer(serializers.ModelSerializer):
             PhoneNumber.objects.create(person=p, phone_number=n['value'])
 
         for e in email_addresses:
-            print e['value']
             EmailAddress.objects.create(person=p, email_address=e['value'])
 
         return p
